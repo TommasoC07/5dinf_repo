@@ -11,7 +11,7 @@ public class GestoreArrivi implements Runnable {
      * la risorsa condivisa listaClienti */
     private ListaClienti listaClienti;
     /* ms fra un arrivo e l'altro */
-    private final int attesaArrivi = 2000;
+    private final int attesaArrivi = 200;
     /**
      * constructor
      * @param listaClienti

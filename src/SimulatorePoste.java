@@ -12,9 +12,9 @@ public class SimulatorePoste {
         ListaClienti listaClienti = new ListaClienti();
         Thread arriviThread = new Thread(new GestoreArrivi(listaClienti));
         Thread sportelloThread = new Thread(new Sportello(listaClienti, "Marzia"));
-        Thread sportelloThread2 = new Thread(new Sportello(listaClienti, "Cinzia"));
+        //Thread sportelloThread2 = new Thread(new Sportello(listaClienti, "Cinzia"));
         arriviThread.start();
         sportelloThread.start();
-        sportelloThread2.start();
+        //sportelloThread2.start();
     }
 }
