@@ -12,12 +12,14 @@ public class GestoreArrivi implements Runnable {
     private ListaClienti listaClienti;
     /* ms fra un arrivo e l'altro */
     private final int attesaArrivi = 200;
+    private String nome;
     /**
      * constructor
      * @param listaClienti
      */
-    public GestoreArrivi(ListaClienti listaClienti) {
+    public GestoreArrivi(ListaClienti listaClienti, String nome) {
         this.listaClienti = listaClienti;
+        this.nome = nome;
     }
     /**
      * TODO: cosa fa?
@@ -27,11 +29,10 @@ public class GestoreArrivi implements Runnable {
         try {
             while (!Thread.interrupted()) {
                 Thread.sleep(attesaArrivi);
-                Integer clienteArrivato = listaClienti.addCliente();
+                Integer clienteArrivato = listaClienti.addCliente(nome);
                 if (clienteArrivato == null) {
                     break;
                 }
-                System.out.println("Arrivo Cliente Numero \t " + clienteArrivato);
             }
         } catch (InterruptedException e) {
             System.out.println("Thread interrotto durante lo sleep");

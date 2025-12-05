@@ -35,26 +35,30 @@ public class ListaClienti {
      * else resta di attesa che arrivi...(notify)
      * @return Integer ultimoServito synchronized
      */
-    public synchronized Integer rimuoviCliente() throws
+    public synchronized Integer rimuoviCliente(String nome) throws
             InterruptedException {
         while (ultimoServito >= ultimoArrivo) { //5  5
             System.out.println("non ci sono arrivi dopo l'ultimo servito");
             wait();
         }
+
         ultimoServito++;
+        System.out.println("Servito Cliente Numero \t " + ultimoServito+
+                " dallo sportello "+ nome);
         return ultimoServito;
     }
 
     /**
-     * metodo eseguito da un thread della Classe GestoreArrivi
+     * metodo eseguito da un thread della Classe {@link GestoreArrivi}
      * che produce un nuovo int aggiungendo 1 all'ultimoArrivo
      * e inserisce tale nuovo numero / ticket nella lista numeri
      * @return Integer: ultimoArrivo o null se gli arrivi saturano
      */
-    public synchronized Integer addCliente() {
+    public synchronized Integer addCliente(String nome) {
         if (ultimoArrivo < numeroMassimo) {
             ultimoArrivo++;
             listaNumeri.add(ultimoArrivo);
+            System.out.println(nome + ": Arrivo Cliente Numero \t " + ultimoArrivo);
             notify();
             return ultimoArrivo;
         }

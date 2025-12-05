@@ -32,14 +32,13 @@ public class Sportello implements Runnable {
     public void run() {
         try {
             while (!Thread.interrupted()) {
-                Integer clienteServito = listaClienti.rimuoviCliente();
+                Integer clienteServito = listaClienti.rimuoviCliente(nome);
                 //tempo di servizio variabile nel range [1,4] secondi
                 int tempoServizio = (int) (Math.random() * (maxTempoServizio
                         - minTempoServizio + 1) + minTempoServizio);
                 Thread.sleep(tempoServizio);
                 //Thread.sleep(1000); //tempo di servizio fisso
-                System.out.println("Servito Cliente Numero \t " + clienteServito+
-                        " dallo sportello "+ nome);
+
             }
         } catch (InterruptedException e) {
             System.out.println("Thread interrotto durante lo sleep");
