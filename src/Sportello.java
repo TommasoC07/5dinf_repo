@@ -44,6 +44,7 @@ public class Sportello implements Runnable {
             System.out.println("Thread interrotto durante lo sleep");
         } finally {
             System.out.println("Sportello Chiuso");
+
         }
     }
 }

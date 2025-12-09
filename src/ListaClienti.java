@@ -55,13 +55,18 @@ public class ListaClienti {
      * @return Integer: ultimoArrivo o null se gli arrivi saturano
      */
     public synchronized Integer addCliente(String nome) {
-        if (ultimoArrivo < numeroMassimo) {
-            ultimoArrivo++;
-            listaNumeri.add(ultimoArrivo);
-            System.out.println(nome + ": Arrivo Cliente Numero \t " + ultimoArrivo);
-            notify();
-            return ultimoArrivo;
+        if (ultimoArrivo - ultimoServito < 3) {
+            if (ultimoArrivo < numeroMassimo) {
+                ultimoArrivo++;
+                listaNumeri.add(ultimoArrivo);
+                System.out.println(nome + ": Arrivo Cliente Numero \t " + ultimoArrivo);
+                notify();
+                return ultimoArrivo;
+            }
+            return null;
         }
+        System.out.println("Troppi clienti in attesa!");
         return null;
     }
+
 }
